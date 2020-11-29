@@ -1,0 +1,40 @@
+/* CSS specific for SwiperUI styleguide */
+section {
+  margin-bottom: var(--spacing-10);
+}
+.typography .text-xs {
+  font-size: var(--text-xs);
+}
+.typography .text-s {
+  font-size: var(--text-s);
+}
+.typography .text-base {
+  font-size: var(--text-base);
+}
+.typography .text-lg {
+  font-size: var(--text-lg);
+}
+.typography .text-xl {
+  font-size: var(--text-xl);
+}
+.typography .text-2xl {
+  font-size: var(--text-2xl);
+}
+.typography .text-3xl {
+  font-size: var(--text-3xl);
+}
+.typography .text-4xl {
+  font-size: var(--text-4xl);
+}
+.typography .text-5xl {
+  font-size: var(--text-5xl);
+}
+.typography .text-6xl {
+  font-size: var(--text-6xl);
+}
+
+.colorbox {
+  width: 220px;
+  height: 60px;
+  font-size: var(--text-xs);
+}

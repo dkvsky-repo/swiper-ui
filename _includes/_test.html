@@ -1,0 +1,29 @@
+<section class="colors">
+  <h2>TEST</h2>
+
+  <!-- {% for colors in _01-colors['base'] %}
+    {% for color in colors[0] %}
+      <div class="color-container">
+        {% if color contains 'gray' %}
+            <div class="colorbox" style="background-color:var({{color}});">{{color}}</div>
+        {% endif %}
+      </div>
+    {% endfor -%}
+  {% endfor -%} -->
+
+  <div style="background-color: yellowgreen;padding:10px;">{{_test.gray}}</div>
+
+
+
+  {% for colors in _test %}
+  {% for color in colors %}
+  <pre>{{color}}</pre>
+  {% endfor -%}
+  <!-- {% for colorGroup in colors %}
+        <h3>{{ colorGroup.name}}</h3>
+        {% for value in colorGroup.value %}
+          <div class="colorbox" style="background-color:var({{value[0]}});">{{ value[0] }}</div>
+        {% endfor -%}
+      {% endfor -%} -->
+  {% endfor -%}
+</section>

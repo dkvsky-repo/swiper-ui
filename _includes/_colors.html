@@ -1,0 +1,13 @@
+<section class="colors">
+  <h2>Colors</h2>
+
+  {% for colors in _01-colors[':root'] %}
+    {% for color in colors[0] %}
+      <div class="color-container">
+        {% if color contains 'gray' %}
+            <div class="colorbox" style="background-color:var({{color}});">{{color}}</div>
+        {% endif %}
+      </div>
+    {% endfor -%}
+  {% endfor -%}
+</section>

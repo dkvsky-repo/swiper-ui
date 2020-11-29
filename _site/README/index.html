@@ -1,0 +1,6 @@
+<h1>CSS updates</h1>
+<p>In order to update CSS, you will need to modify the JSON file(s) in <code>_data/</code>. Then, run the <code>jsonToCss.mjs</code> script to update or create new CSS files. For example:</p>
+<pre><code class="language-js">node utils/jsonToCss.mjs
+</code></pre>
+<p>Although it may seem tedius, doing so eliminates the duplicate task of sync'ing CSS files and JSON files. JSON files are used by the templating system to populate information in HTML pages.
+If you are adding <strong>new CSS</strong> files, don't forget to add an import statement in <code>css/styles.css</code>.</p>

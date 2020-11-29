@@ -1,0 +1,30 @@
+{
+  "name": "swiper-eleventy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "npx @11ty/eleventy --serve",
+    "dev:transform-json": "node utils/jsonToCss.mjs",
+    "dev:watch-styles": "postcss css/styles.css -o _site/styles.css -w",
+    "dev:watch-styleguide": "postcss css/styleguide.css -o _site/styleguide.css -w",
+    "dev:watch-css": "concurrently \"npm run dev:watch-styles\" \"npm run dev:watch-styleguide\"",
+    "build:styles": "postcss css/styles.css -o _site/styles.css",
+    "build:styleguide": "postcss css/styleguide.css -o _site/styleguide.css",
+    "build:css": "concurrently \"npm run build:styles\" \"npm run build:styleguide\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.11.0"
+  },
+  "dependencies": {
+    "concurrently": "^5.3.0",
+    "postcss": "^8.1.1",
+    "postcss-cli": "^8.1.0",
+    "postcss-easy-import": "^3.0.0",
+    "postcss-nested": "^5.0.1",
+    "postcss-preset-env": "^6.7.0"
+  }
+}
