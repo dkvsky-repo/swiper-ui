@@ -16,45 +16,43 @@ function readFile(directory, file) {
 
 (function buildCssRuleset() {
   // Get array of CSS files.
-  // @TODO: maybe change the naming convention of these files
+  // TODO: maybe change the naming convention of these files
   // in case we want to use other type of data files not
-  // necessarily for CSS.
-  // Maybe prepend filenames with "_css", like "_css-01-colors.json"
-  // Then we could choose files containing "_css" only.
+  // necessarily for creating CSS files.
+  // Maybe prepend filenames with "_css", like "_css-01-colors.json",
+  // and then we could filter by files containing "_css".
   const jsonSourceDirectory = getDirectoryPath("_data");
   const cssDestDirectory = getDirectoryPath("css");
   const filenames = getFilenames(jsonSourceDirectory, "json"); // i.e. ['_01-colors.json']
 
   filenames.map((name) => {
-    let newObj = {};
     const file = readFile(jsonSourceDirectory, name);
     let fileObject = JSON.parse(file);
-
-    // Some JSON files have a ":root" property because CSS
-    // values will be placed under ":root". Here we make sure to
-    // identify them before processing.
-    let fileObjHasRoot = false;
-    if (fileObject.hasOwnProperty(":root")) {
-      fileObjHasRoot = true;
-      fileObject = fileObject[":root"];
-    }
-
+    let newObj = {};
     let cssDeclarations = "";
 
-    for (let selector in fileObject) {
-      let count = Object.keys(fileObject[selector]).length;
-      for (let property in fileObject[selector]) {
-        --count;
-        cssDeclarations += `\t${property}: ${fileObject[selector][property]};\r`;
+    // Some JSON files have a ":root" property because CSS
+    // values will be placed under ":root" selector.
+    if (fileObject.hasOwnProperty(":root")) {
+      for (let selector in fileObject[":root"]) {
+        let count = Object.keys(fileObject[":root"][selector]).length;
+        for (let property in fileObject[":root"][selector]) {
+          --count;
+          cssDeclarations += `\t${property}: ${fileObject[":root"][selector][property]};\r`;
+        }
+        newObj[":root"] = cssDeclarations;
       }
-      if (!fileObjHasRoot) {
+    } else {
+      // if "fileObject" does not have a ":root" property
+      for (let selector in fileObject) {
+        let count = Object.keys(fileObject[selector]).length;
+        for (let property in fileObject[selector]) {
+          --count;
+          cssDeclarations += `\t${property}: ${fileObject[selector][property]};\r`;
+        }
         newObj[selector] = cssDeclarations;
         cssDeclarations = "";
       }
-    }
-
-    if (fileObjHasRoot) {
-      newObj[":root"] = cssDeclarations;
     }
 
     // Create CSS string.
